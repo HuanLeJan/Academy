@@ -1,0 +1,40 @@
+def Dateinterpreter_2() :
+    #funkcja z wprowadzeniem daty poprzez input
+
+    a = input('Provide date in following format  year, month, day :')
+    if len(a) == 0:
+        return print('Error: provide function with date. ')
+
+    else:
+        a = tuple(int(x) for x in a.split(","))
+
+        if len(a) == 3:
+
+            year = a[0]
+            month = a[1]
+            day = a[2]
+            Date = date(year, month, day)
+            return print('Date : {} is {} day of the year.'.format(Date,Date.strftime('%j')))
+
+        elif len(a) == 2:
+
+            year = a[0]
+            month = a[1]
+            if month > 12 or month == 0:
+                return print('Error : month number must be beetwen 1 and 12.')
+            else:
+                DaysInMonth = calendar.monthrange(year, month)
+                DaysInMonth = DaysInMonth[1] #[1] bo monthrange zwraca dwie wartosci " first day of the month and number of days in month"
+                return print('There is {} days in month {} in year {}. '.format(DaysInMonth, calendar.month_name[month], year))
+
+        elif len(a) == 1:
+
+            year = a[0]
+            LeapYear = calendar.isleap(year)
+            if LeapYear == True:
+                return print('Year {} is leap.'.format(year))
+            else:
+                return print('Year {} is not leap.'.format(year))
+
+        else:
+            return print('Provided date has wrong format.')
